@@ -5,22 +5,22 @@
 /* Import clean, readable fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
-/* AMOLED Theme Variables */
+/* Theme Variables - Light Mode Primary */
 :root {
-  /* Light AMOLED - Pure White */
+  /* Light Mode - Clean & Bright */
   --bg-primary: #ffffff;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #fafafa;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
   --bg-card: #ffffff;
-  --text-primary: #000000;
-  --text-secondary: #525252;
-  --text-tertiary: #737373;
-  --border-color: #e5e5e5;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --border-color: #e5e7eb;
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
 }
 
 .dark {
-  /* Dark AMOLED - Pure Black */
+  /* Dark AMOLED Mode - Pure Black for OLED displays */
   --bg-primary: #000000;
   --bg-secondary: #000000;
   --bg-tertiary: #0a0a0a;
@@ -28,13 +28,13 @@
   --text-primary: #ffffff;
   --text-secondary: #a3a3a3;
   --text-tertiary: #737373;
-  --border-color: #262626;
+  --border-color: #1a1a1a;
   --shadow: 0 1px 3px 0 rgb(255 255 255 / 0.05);
 }
 
-/* Base styles for AMOLED with optimized typography */
+/* Base styles with optimized typography for light mode */
 body {
-  @apply bg-white dark:bg-black text-black dark:text-white transition-colors duration-200;
+  @apply bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-200;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -67,7 +67,7 @@ p, span, div {
 .text-3xl { font-size: 1.875rem; line-height: 1.3; }
 .text-4xl { font-size: 2.25rem; line-height: 1.2; }
 
-/* Better contrast for dark mode text */
+/* Better contrast for dark AMOLED mode text */
 .dark {
   color: #ffffff;
 }
@@ -80,11 +80,25 @@ p, span, div {
   color: #999999;
 }
 
-/* Optimized for AMOLED displays */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000000;
-  }
+.dark .text-gray-400 {
+  color: #808080;
+}
+
+/* AMOLED optimizations */
+.dark .bg-gray-50 {
+  background-color: #0a0a0a;
+}
+
+.dark .bg-gray-100 {
+  background-color: #141414;
+}
+
+.dark .bg-gray-800 {
+  background-color: #0a0a0a;
+}
+
+.dark .bg-gray-900 {
+  background-color: #000000;
 }
 
 :root {

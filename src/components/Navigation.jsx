@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Sun, Moon } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import ThemeToggle from './ThemeToggle'
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -28,7 +29,7 @@ export default function Navigation() {
   return (
     <>
       {/* Top Header - Hidden on Mobile */}
-      <div className="hidden md:block bg-purple-600 dark:bg-black text-white py-2 text-sm fixed top-0 left-0 right-0 z-50">
+      <div className="hidden md:block bg-purple-600 dark:bg-black text-white py-2 text-sm fixed top-0 left-0 right-0 z-50 dark:border-b dark:border-gray-800">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-6">
@@ -60,7 +61,7 @@ export default function Navigation() {
       </div>
 
       {/* Main Navigation */}
-      <nav className="bg-white/95 dark:bg-black/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 shadow-sm fixed md:top-8 top-0 left-0 right-0 z-40">
+      <nav className="bg-white/95 dark:bg-black/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 shadow-sm fixed md:top-8 top-0 left-0 right-0 z-40">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -81,8 +82,8 @@ export default function Navigation() {
                   href={item.href}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                     isActive(item.href)
-                      ? 'text-purple-600 bg-purple-50'
-                      : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
+                      ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-50 dark:hover:bg-gray-900'
                   }`}
                 >
                   {item.name}
@@ -92,6 +93,9 @@ export default function Navigation() {
 
             {/* Right Side Actions */}
             <div className="flex items-center space-x-4">
+              {/* Theme Toggle */}
+              <ThemeToggle />
+
               {/* Donate Button */}
               <Link
                 href="/give"
@@ -105,7 +109,7 @@ export default function Navigation() {
               <div className="hidden md:flex items-center space-x-2">
                 <Link
                   href="/login"
-                  className="px-4 py-2 text-gray-700 hover:text-purple-600 font-medium transition-colors"
+                  className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors"
                 >
                   Login
                 </Link>
@@ -120,7 +124,7 @@ export default function Navigation() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors text-gray-700 dark:text-gray-300"
               >
                 {isMobileMenuOpen ? (
                   <X className="w-6 h-6" />
@@ -143,8 +147,16 @@ export default function Navigation() {
           />
 
           {/* Mobile Menu Panel */}
-          <div className="fixed md:top-24 top-16 right-0 w-80 max-w-[85vw] h-[calc(100vh-4rem)] md:h-[calc(100vh-6rem)] bg-white shadow-xl z-40 lg:hidden overflow-y-auto">
+          <div className="fixed md:top-24 top-16 right-0 w-80 max-w-[85vw] h-[calc(100vh-4rem)] md:h-[calc(100vh-6rem)] bg-white dark:bg-black shadow-xl dark:border-l dark:border-gray-800 z-40 lg:hidden overflow-y-auto">
             <div className="p-6">
+              {/* Theme Toggle in Mobile Menu */}
+              <div className="mb-6 pb-6 border-b border-gray-200 dark:border-gray-800">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Theme</span>
+                  <ThemeToggle />
+                </div>
+              </div>
+
               {/* Navigation Links */}
               <nav className="space-y-2">
                 {navigation.map((item) => (
@@ -153,8 +165,8 @@ export default function Navigation() {
                     href={item.href}
                     className={`block px-4 py-3 rounded-lg transition-colors ${
                       isActive(item.href)
-                        ? 'bg-purple-100 text-purple-700 font-semibold'
-                        : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 font-semibold'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900'
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -177,7 +189,7 @@ export default function Navigation() {
                 <div className="space-y-2">
                   <Link
                     href="/login"
-                    className="block w-full text-center py-3 border border-purple-200 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors"
+                    className="block w-full text-center py-3 border border-purple-200 dark:border-purple-800 text-purple-600 dark:text-purple-400 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Login
